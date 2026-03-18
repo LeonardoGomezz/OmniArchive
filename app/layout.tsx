@@ -36,9 +36,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="flex">
+          <div className="min-h-screen bg-background relative">
+            {/* Scanline overlay */}
+            <div className="scanline-overlay" />
             <OnmiArchiveSidebar />
-            <main className="flex-1">{children}</main>
+            <div className="ml-56 min-h-screen flex flex-col">
+              <main className="flex-1">{children}</main>
+            </div>
           </div>
         </QueryProvider>
       </body>
