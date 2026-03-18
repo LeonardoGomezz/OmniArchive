@@ -50,7 +50,7 @@ src/
 Clonar repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/omniarchive.git
+git clone https://github.com/LeonardoGomezz/OmniArchive.git
 ```
 
 Instalar dependencias:
@@ -73,4 +73,4 @@ npm run dev
 
 ---
 
-Desarrollado con rigor técnico por [Tu Nombre] — 2026.
+Desarrollado por [Leonardo Jose Gomez Gomez] — 2026.
