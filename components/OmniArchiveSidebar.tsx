@@ -45,7 +45,7 @@ const OnmiArchiveSidebar = () => {
 
   return (
     <aside
-      className={`h-screen z-40 flex flex-col transition-all duration-300 ${
+      className={`fixed left-0 top-0 h-screen z-40 flex flex-col transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-56"
       }`}
       style={{
