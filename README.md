@@ -23,7 +23,7 @@ El proyecto se centra en la **Navegación Relacional**. El usuario puede iniciar
 
 Para garantizar un rendimiento de nivel profesional y un código mantenible, el proyecto utiliza la siguiente arquitectura:
 
-- **Framework:** `Next.js 14` (App Router) para un renderizado híbrido y rutas optimizadas.
+- **Framework:** `Next.js 16` (App Router) para un renderizado híbrido y rutas optimizadas.
 - **Lenguaje:** `TypeScript` para un tipado estricto de los contratos de la API.
 - **Estilos:** `Tailwind CSS` + `Shadcn UI` para una construcción de interfaces atómica y consistente.
 - **Manejo de Estado:**
