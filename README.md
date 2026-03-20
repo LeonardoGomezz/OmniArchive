@@ -17,10 +17,12 @@ El proyecto se centra en la **Navegación Relacional**. El usuario puede iniciar
 - **🔍 Advanced Search System:** Búsqueda en tiempo real por nombre, status y gender con debounce de 300ms.
 - **📊 Character Database:** Navegación por más de 800 personajes con infinite scroll optimizado.
 - **🎨 Cyberpunk Terminal UI:** Interfaz con estética glassmorphism, bordes neon green y animaciones fluidas.
+- **📋 Detail Modal:** Vista detallada de personajes con datos de location y dimensionales.
 - **⚡ Performance Optimized:** TanStack Query para caché inteligente y Zustand para estado global.
 - **📱 Responsive Design:** Grid adaptativo con skeletons de carga y manejo de errores.
 - **🔄 Infinite Scroll:** Intersection Observer para carga automática al hacer scroll.
 - **🎯 Type-Safe Architecture:** TypeScript estricto con interfaces centralizadas y validación.
+- **🏗️ Service Layer Architecture:** Separación clara entre API, services y queries.
 
 ## 🏗️ Arquitectura y Stack Tecnológico
 
@@ -43,14 +45,22 @@ src/
 │   ├── CharacterCard.tsx         # Tarjeta individual de personaje con animaciones
 │   ├── CharacterFilters.tsx      # Sistema de búsqueda y filtros cyberpunk
 │   ├── CharactersSection.tsx     # Grid principal con infinite scroll
+│   ├── DetailModal.tsx            # Modal detallado con datos de location
 │   └── OmniArchiveSidebar.tsx    # Navegación lateral con Zustand
 ├── lib/                          # Utilidades y configuración
-│   └── api/
-│       └── api.ts                # Cliente Axios configurado
+│   ├── api/
+│   │   └── api.ts                # Cliente Axios configurado
+│   ├── services/
+│   │   ├── characters.ts         # Service layer para personajes
+│   │   └── locations.ts          # Service layer para locations
+│   └── utils.ts                  # Utilidades cn() y helpers
 ├── queries/                      # Lógica de fetching con TanStack Query
-│   └── characters/
-│       ├── character.keys.ts     # Query keys centralizadas
-│       └── character.queries.ts  # Hooks personalizados con filtros
+│   ├── characters/
+│   │   ├── character.keys.ts     # Query keys centralizadas
+│   │   └── character.queries.ts  # Hooks personalizados con filtros
+│   └── locations/
+│       ├── locations.keys.ts     # Query keys para locations
+│       └── locations.queries.ts  # Hooks para location details
 ├── store/                        # Estado global con Zustand
 │   └── use-navigation.ts         # Navegación y persistencia
 └── types/                        # Definiciones TypeScript
@@ -63,7 +73,12 @@ src/
 // Flow de datos optimizado
 CharacterFilters → character.queries.ts → TanStack Query → CharactersSection
      ↓                       ↓                      ↓                    ↓
-  UI Input              API Layer              Cache              Render
+  UI Input              Service Layer           Cache              Render
+
+// Detail Modal flow
+CharacterCard → DetailModal → useLocationById → TanStack Query → Location Data
+     ↓               ↓              ↓                   ↓                ↓
+  Click Event    Modal State    Service Layer      Cache          Render
 ```
 
 ---
@@ -122,9 +137,20 @@ npm run dev
 #### **API Integration:**
 
 - **Axios Client:** Configurado con `baseURL` y headers estándar
+- **Service Layer:** Separación clara entre API calls y business logic
 - **Query Keys Pattern:** Keys jerárquicas para invalidación precisa
-- **Error Boundaries:** Manejo de errores de red y parsing
+- **Error Boundaries:** Manejo de errores de red con AxiosError handling
 - **Data Transformation:** Mapeo de respuestas API a interfaces TypeScript
+- **Location Integration:** Fetch automático de datos dimensionales en DetailModal
+
+#### **Detail Modal System:**
+
+- **Framer Motion Animations:** Scale, fade y slide transitions
+- **Glassmorphism Design:** Backdrop blur con bordes neon green
+- **Dynamic Location Data:** Fetch automático de location details
+- **Character Stats:** Appearances, dimension y threat level
+- **Activity Log:** Gráficos de barras simulados con datos dinámicos
+- **Responsive Layout:** Mobile-first con breakpoints optimizados
 
 ---
 
@@ -139,14 +165,21 @@ npm run dev
 - [x] TypeScript strict mode
 - [x] Zustand para estado global
 - [x] Framer Motion animations
+- [x] DetailModal con location data dinámica
+- [x] Service layer architecture
+- [x] Error handling con AxiosError
+- [x] Query keys centralizadas
+- [x] Sidebar fixed con padding dinámico
+- [x] Modal transitions optimizadas
 
 ### 🚧 **Próximas Features:**
 
-- [ ] Character detail modal
 - [ ] Location database explorer
 - [ ] Episode timeline viewer
 - [ ] Favorites system con persistencia
 - [ ] Advanced analytics dashboard
+- [ ] Character relationships graph
+- [ ] Dimensional navigation system
 
 ---
 
