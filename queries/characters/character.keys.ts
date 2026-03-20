@@ -1,4 +1,4 @@
-interface CharacterFilters {
+export interface CharacterFilters {
   name?: string;
   status?: string;
   gender?: string;
@@ -6,8 +6,13 @@ interface CharacterFilters {
 
 export const characterKeys = {
   all: ["characters"] as const,
+
   lists: () => [...characterKeys.all, "list"] as const,
-  list: (page: number, pageSize: number, filters?: CharacterFilters) =>
-    [...characterKeys.all, "list", { page, pageSize, ...filters }] as const,
-  detail: (id: string) => [...characterKeys.all, "detail", id] as const,
+
+  list: (filters?: CharacterFilters) =>
+    [...characterKeys.lists(), { ...filters }] as const,
+
+  details: () => [...characterKeys.all, "detail"] as const,
+  detail: (id: string | number) =>
+    [...characterKeys.details(), id.toString()] as const,
 };
