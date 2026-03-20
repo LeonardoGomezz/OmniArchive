@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useCharacters } from "@/queries/characters/character.queries";
 import CharacterCard from "./CharacterCard";
 import { CharacterFilters } from "./CharacterFilters";
+import DetailModal from "./DetailModal";
 import { Character } from "@/types";
 
 export const CharactersSection = () => {
@@ -31,12 +32,27 @@ export const CharactersSection = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
+    null,
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleCharacterClick = (character: Character) => {
-    // TODO: Implement modal open logic
-    console.log(character);
+    setSelectedCharacter(character);
+    setIsModalOpen(true);
   };
 
-  // Aplanar todas las páginas de resultados
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedCharacter(null), 300);
+  };
+
+  const handleViewDossier = (character: Character) => {
+    console.log("View full dossier for:", character);
+    // TODO: Implement full dossier view
+  };
+
+  // Flatten all result pages
   const allCharacters = data?.pages.flatMap((page) => page.results) || [];
 
   // Infinite scroll con Intersection Observer
@@ -137,6 +153,14 @@ export const CharactersSection = () => {
           </div>
         )}
       </div>
+
+      {/* Detail Modal */}
+      <DetailModal
+        character={selectedCharacter}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onViewDossier={handleViewDossier}
+      />
     </div>
   );
 };
