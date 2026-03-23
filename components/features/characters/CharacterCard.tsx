@@ -1,54 +1,116 @@
 import { motion } from "framer-motion";
 import { Character } from "@/types";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
-import { CharacterStatusBadge } from "./CharacterStatusBadge";
-import { CharacterInfo } from "./CharacterInfo";
 import { CharacterActions } from "./CharacterActions";
-import { useCardHover } from "@/hooks/ui/useCardHover";
 
 interface CharacterCardProps {
   character: Character;
+  index?: number;
   onClick: (character: Character) => void;
   onViewDossier: (character: Character) => void;
 }
 
-export const CharacterCard = ({ 
-  character, 
+const statusColor = (status: string) => {
+  switch (status) {
+    case "Alive":
+      return "text-primary";
+    case "Dead":
+      return "text-destructive";
+    default:
+      return "text-muted-foreground";
+  }
+};
+
+export const CharacterCard = ({
+  character,
+  index = 0,
   onClick,
-  onViewDossier 
+  onViewDossier,
 }: CharacterCardProps) => {
-  const { isHovered, hoverProps } = useCardHover();
-  
   return (
     <motion.div
-      {...hoverProps}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className="glass-surface rounded-lg overflow-hidden cursor-pointer group"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
       onClick={() => onClick(character)}
+      className="glass-surface card-glow-hover cursor-pointer group rounded-sm overflow-hidden"
     >
-      <div className="relative h-48">
-        <ImageWithFallback
-          src={character.image}
-          alt={character.name}
-          fallback="/character-placeholder.png"
-          className="w-full h-full"
-        />
-        <CharacterStatusBadge status={character.status} />
+      {/* Image */}
+      <div className="relative overflow-hidden">
+        <div className="clip-geometric">
+          <ImageWithFallback
+            src={character.image}
+            alt={character.name}
+            fallback="/character-placeholder.png"
+            className="w-full h-48 object-cover transition-all duration-500 grayscale group-hover:grayscale-0"
+          />
+        </div>
+        {/* ID badge */}
+        <div className="absolute top-2 right-2 px-2 py-0.5 text-[9px] tracking-[0.2em] font-mono bg-background/80 border border-border/50 rounded-sm text-muted-foreground">
+          #{String(character.id).padStart(3, "0")}
+        </div>
       </div>
-      
+
+      {/* Content */}
       <div className="p-4 space-y-3">
-        <h3 className="font-mono text-primary text-glow truncate">
+        <h3 className="font-mono text-sm font-bold uppercase italic tracking-wider text-primary text-glow truncate">
           {character.name}
         </h3>
-        
-        <CharacterInfo character={character} />
-        
-        <CharacterActions 
+
+        <div className="space-y-1.5">
+          {/* Status */}
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] tracking-[0.15em] uppercase text-muted-foreground">
+              Status:
+            </span>
+            <div className="flex items-center gap-1.5">
+              <div
+                className={`w-1.5 h-1.5 rounded-full pulse-dot ${statusColor(character.status)}`}
+                style={{ backgroundColor: "currentColor" }}
+              />
+              <span
+                className={`text-[10px] tracking-wider uppercase font-medium ${statusColor(character.status)}`}
+              >
+                {character.status}
+              </span>
+            </div>
+          </div>
+
+          {/* Species */}
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] tracking-[0.15em] uppercase text-muted-foreground">
+              Species:
+            </span>
+            <span className="text-[10px] tracking-wider text-secondary text-glow-blue">
+              {character.species}
+            </span>
+          </div>
+
+          {/* Location */}
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] tracking-[0.15em] uppercase text-muted-foreground">
+              Location:
+            </span>
+            <span className="text-[10px] tracking-wider text-muted-foreground truncate">
+              {character.location.name}
+            </span>
+          </div>
+        </div>
+
+        {/* Actions - Solo visible en hover */}
+        <CharacterActions
           character={character}
           onViewDossier={onViewDossier}
-          isHovered={isHovered}
+          isHovered={false} // Siempre visible para mantener el diseño original
         />
       </div>
+
+      {/* Bottom accent line */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
     </motion.div>
   );
 };

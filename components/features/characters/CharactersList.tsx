@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import { Character } from "@/types";
-import { cn } from "@/lib/utils";
 import { CharacterCard } from "./CharacterCard";
+import { cn } from "@/lib/utils";
 
 interface CharactersListProps {
   characters: Character[];
@@ -107,18 +106,13 @@ export const CharactersList = ({
       {/* Characters grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {characters.map((character, characterIndex) => (
-          <motion.div
+          <CharacterCard
             key={character.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: characterIndex * 0.05 }}
-          >
-            <CharacterCard
-              character={character}
-              onClick={onCharacterClick}
-              onViewDossier={onViewDossier}
-            />
-          </motion.div>
+            character={character}
+            index={characterIndex}
+            onClick={onCharacterClick}
+            onViewDossier={onViewDossier}
+          />
         ))}
       </div>
 
