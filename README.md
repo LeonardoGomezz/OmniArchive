@@ -18,6 +18,8 @@ El proyecto se centra en la **Navegación Relacional**. El usuario puede iniciar
 - **📊 Character Database:** Navegación por más de 800 personajes con infinite scroll optimizado.
 - **🎨 Cyberpunk Terminal UI:** Interfaz con estética glassmorphism, bordes neon green y animaciones fluidas.
 - **📋 Detail Modal:** Vista detallada de personajes con datos de location y dimensionales.
+- **🗂️ Character Dossier:** Página dedicada con información completa del personaje y análisis dimensional.
+- **🚀 Dynamic Routing:** Rutas dinámicas `/dossier/[id]` con Next.js 15+ y params asíncronos.
 - **⚡ Performance Optimized:** TanStack Query para caché inteligente y Zustand para estado global.
 - **📱 Responsive Design:** Grid adaptativo con skeletons de carga y manejo de errores.
 - **🔄 Infinite Scroll:** Intersection Observer para carga automática al hacer scroll.
@@ -41,8 +43,15 @@ Para garantizar un rendimiento de nivel profesional y un código mantenible, el 
 ```text
 src/
 ├── app/                          # Rutas dinámicas y layouts (Next.js App Router)
+│   ├── dossier/
+│   │   └── [id]/
+│   │       └── page.tsx          # Página dinámica de Character Dossier
+│   ├── QueryProvider.tsx         # Provider de TanStack Query
+│   ├── layout.tsx                # Layout principal con sidebar
+│   └── page.tsx                  # Home / Dashboard
 ├── components/                    # Componentes de UI (Shadcn + Custom)
 │   ├── CharacterCard.tsx         # Tarjeta individual de personaje con animaciones
+│   ├── CharacterDOssier.tsx      # Componente completo de Character Dossier
 │   ├── CharacterFilters.tsx      # Sistema de búsqueda y filtros cyberpunk
 │   ├── CharactersSection.tsx     # Grid principal con infinite scroll
 │   ├── DetailModal.tsx            # Modal detallado con datos de location
@@ -51,7 +60,7 @@ src/
 │   ├── api/
 │   │   └── api.ts                # Cliente Axios configurado
 │   ├── services/
-│   │   ├── characters.ts         # Service layer para personajes
+│   │   ├── characters.ts         # Service layer para personajes (incl. getCharacterById)
 │   │   └── locations.ts          # Service layer para locations
 │   └── utils.ts                  # Utilidades cn() y helpers
 ├── queries/                      # Lógica de fetching con TanStack Query
@@ -79,6 +88,11 @@ CharacterFilters → character.queries.ts → TanStack Query → CharactersSecti
 CharacterCard → DetailModal → useLocationById → TanStack Query → Location Data
      ↓               ↓              ↓                   ↓                ↓
   Click Event    Modal State    Service Layer      Cache          Render
+
+// Character Dossier flow
+CharacterCard → DetailModal → Router → /dossier/[id] → useQuery → Character Data
+     ↓               ↓           ↓              ↓              ↓              ↓
+  Click Event   "View Dossier"  Navigation   Dynamic Route  Service Layer  Render
 ```
 
 ---
@@ -152,6 +166,24 @@ npm run dev
 - **Activity Log:** Gráficos de barras simulados con datos dinámicos
 - **Responsive Layout:** Mobile-first con breakpoints optimizados
 
+#### **Character Dossier System:**
+
+- **Dynamic Routing:** Rutas `/dossier/[id]` con Next.js 15+ params asíncronos
+- **Full Character Profile:** Vista completa con stats, episodes y análisis dimensional
+- **Advanced UI Components:** Readout cards, stat boxes y activity charts
+- **Navigation Integration:** Botón "View Full Dossier" con router.push()
+- **Loading States:** Skeletons y spinners para mejor UX
+- **Error Boundaries:** Manejo de errores con fallback UI
+- **Service Integration:** getCharacterById con TanStack Query
+- **React.use() Hook:** Unwrapping de params asíncronos Next.js 15+
+
+#### **Next.js 15+ Compatibility:**
+
+- **Async Params:** `params` como Promise con `React.use()`
+- **Type Safety:** Tipado correcto para `Promise<{ id: string }>`
+- **Performance:** Optimización de bundle y streaming
+- **App Router:** Rutas dinámicas con layouts anidados
+
 ---
 
 ## 📊 Estado Actual del Proyecto
@@ -171,6 +203,12 @@ npm run dev
 - [x] Query keys centralizadas
 - [x] Sidebar fixed con padding dinámico
 - [x] Modal transitions optimizadas
+- [x] Character Dossier página dedicada
+- [x] Dynamic routing `/dossier/[id]`
+- [x] Next.js 15+ params asíncronos
+- [x] getCharacterById service
+- [x] CharacterDOssier component
+- [x] Navigation integration
 
 ### 🚧 **Próximas Features:**
 
@@ -180,6 +218,8 @@ npm run dev
 - [ ] Advanced analytics dashboard
 - [ ] Character relationships graph
 - [ ] Dimensional navigation system
+- [ ] Real-time notifications
+- [ ] Export dossier functionality
 
 ---
 
