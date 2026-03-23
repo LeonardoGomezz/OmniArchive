@@ -43,3 +43,9 @@ export interface ApiResponse<T> {
   };
   results: T[];
 }
+
+export interface NavItem {
+  icon: React.ElementType;
+  label: string;
+  id: string;
+}

@@ -1,30 +1,9 @@
 "use client";
-import {
-  Users,
-  MapPin,
-  Tv,
-  BookOpen,
-  Activity,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigation } from "@/store/use-navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-interface NavItem {
-  icon: React.ElementType;
-  label: string;
-  id: string;
-}
-
-const navItems: NavItem[] = [
-  { icon: Users, label: "Characters", id: "characters" },
-  { icon: MapPin, label: "Locations", id: "locations" },
-  { icon: Tv, label: "Episodes", id: "episodes" },
-  { icon: BookOpen, label: "Codex", id: "codex" },
-  { icon: Activity, label: "Diagnostics", id: "diagnostics" },
-];
+import { navItems } from "@/lib/data/data";
 
 const OnmiArchiveSidebar = () => {
   const {
