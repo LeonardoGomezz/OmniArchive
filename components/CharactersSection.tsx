@@ -5,8 +5,10 @@ import CharacterCard from "./CharacterCard";
 import { CharacterFilters } from "./CharacterFilters";
 import DetailModal from "./DetailModal";
 import { Character } from "@/types";
+import { useRouter } from "next/navigation";
 
 export const CharactersSection = () => {
+  const route = useRouter();
   const [filters, setFilters] = useState({
     name: "",
     status: "all",
@@ -49,6 +51,7 @@ export const CharactersSection = () => {
 
   const handleViewDossier = (character: Character) => {
     console.log("View full dossier for:", character);
+    route.push(`/dossier/${character.id}`);
     // TODO: Implement full dossier view
   };
 
