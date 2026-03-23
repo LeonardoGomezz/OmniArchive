@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigation } from "@/store/use-navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { navItems } from "@/lib/data/data";
+import { NAVIGATION_CONFIG } from "@/lib/config/navigation";
 
 const OnmiArchiveSidebar = () => {
   const {
@@ -56,7 +56,7 @@ const OnmiArchiveSidebar = () => {
 
       {/* Nav items */}
       <nav className="flex-1 py-4 space-y-1 px-2">
-        {navItems.map((item) => {
+        {NAVIGATION_CONFIG.ITEMS.map((item) => {
           const isActive = activeSection === item.id;
           return (
             <button

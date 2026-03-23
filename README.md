@@ -24,7 +24,11 @@ El proyecto se centra en la **Navegación Relacional**. El usuario puede iniciar
 - **📱 Responsive Design:** Grid adaptativo con skeletons de carga y manejo de errores.
 - **🔄 Infinite Scroll:** Intersection Observer para carga automática al hacer scroll.
 - **🎯 Type-Safe Architecture:** TypeScript estricto con interfaces centralizadas y validación.
-- **🏗️ Service Layer Architecture:** Separación clara entre API, services y queries.
+- **🏗️ Enterprise Architecture:** Service layer, hooks personalizados y component composition.
+- **🔧 Custom Hooks Architecture:** Hooks reutilizables para data fetching, UI state y navigation.
+- **⚙️ Configuration Management:** Configuración centralizada y type-safe.
+- **🎨 Component Composition:** Componentes atómicos y reutilizables con separación de responsabilidades.
+- **🖥️ Server/Client Components:** Separación óptima entre renderizado server y client.
 
 ## 🏗️ Arquitectura y Stack Tecnológico
 
@@ -47,22 +51,45 @@ src/
 │   │   └── [id]/
 │   │       └── page.tsx          # Página dinámica de Character Dossier
 │   ├── QueryProvider.tsx         # Provider de TanStack Query
-│   ├── layout.tsx                # Layout principal con sidebar
+│   ├── layout.tsx                # Server Component layout principal
 │   └── page.tsx                  # Home / Dashboard
 ├── components/                    # Componentes de UI (Shadcn + Custom)
-│   ├── CharacterCard.tsx         # Tarjeta individual de personaje con animaciones
+│   ├── features/                 # Componentes específicos por feature
+│   │   └── characters/
+│   │       ├── CharacterCard.tsx         # Tarjeta individual con hooks
+│   │       ├── CharacterStatusBadge.tsx  # Badge de estado reutilizable
+│   │       ├── CharacterInfo.tsx          # Información del personaje
+│   │       ├── CharacterActions.tsx       # Acciones del personaje
+│   │       └── CharactersList.tsx         # Lista con infinite scroll
+│   ├── layout/                   # Componentes de layout
+│   │   └── LayoutContent.tsx             # Client Component para layout
+│   ├── shared/                   # Componentes reutilizables
+│   │   └── ImageWithFallback.tsx         # Imagen con fallback
 │   ├── CharacterDOssier.tsx      # Componente completo de Character Dossier
-│   ├── CharacterFilters.tsx      # Sistema de búsqueda y filtros cyberpunk
-│   ├── CharactersSection.tsx     # Grid principal con infinite scroll
-│   ├── DetailModal.tsx            # Modal detallado con datos de location
+│   ├── CharacterFilters.tsx      # Sistema de búsqueda y filtros
+│   ├── CharactersSection.tsx     # Componente principal refactorizado
+│   ├── DetailModal.tsx           # Modal detallado con datos de location
 │   └── OmniArchiveSidebar.tsx    # Navegación lateral con Zustand
-├── lib/                          # Utilidades y configuración
+├── hooks/                        # Custom hooks personalizados
+│   ├── api/                      # Hooks de data fetching
+│   │   └── useCharactersWithFilters.ts   # Hook de filtros y fetching
+│   ├── ui/                       # Hooks de UI state
+│   │   ├── useCharacterSelection.ts        # Estado de modal y selección
+│   │   ├── useCharacterNavigation.ts       # Navegación de personajes
+│   │   ├── useCardHover.ts                 # Interacciones hover
+│   │   └── useSidebarPadding.ts            # Padding dinámico de sidebar
+│   └── performance/              # Hooks de performance
+│       └── useDebounce.ts                  # Hook de debounce optimizado
+├── lib/                          # Utilidades y configuración centralizada
 │   ├── api/
-│   │   └── api.ts                # Cliente Axios configurado
-│   ├── services/
-│   │   ├── characters.ts         # Service layer para personajes (incl. getCharacterById)
-│   │   └── locations.ts          # Service layer para locations
+│   │   └── client.ts             # Cliente Axios con interceptors
+│   ├── config/
+│   │   ├── constants.ts          # Configuración de aplicación
+│   │   └── navigation.ts        # Configuración de navegación
 │   └── utils.ts                  # Utilidades cn() y helpers
+├── services/                     # Business logic layer
+│   └── api/
+│       └── characters.service.ts # Service layer para personajes
 ├── queries/                      # Lógica de fetching con TanStack Query
 │   ├── characters/
 │   │   ├── character.keys.ts     # Query keys centralizadas
@@ -79,20 +106,25 @@ src/
 ### Arquitectura de Datos:
 
 ```typescript
-// Flow de datos optimizado
-CharacterFilters → character.queries.ts → TanStack Query → CharactersSection
-     ↓                       ↓                      ↓                    ↓
-  UI Input              Service Layer           Cache              Render
+// Flow de datos optimizado con hooks personalizados
+CharacterFilters → useCharactersWithFilters → TanStack Query → CharactersList
+     ↓                       ↓                           ↓                    ↓
+  UI Input              Custom Hook                    Cache              Render
 
-// Detail Modal flow
-CharacterCard → DetailModal → useLocationById → TanStack Query → Location Data
-     ↓               ↓              ↓                   ↓                ↓
-  Click Event    Modal State    Service Layer      Cache          Render
+// Detail Modal flow con hooks específicos
+CharacterCard → useCharacterSelection → DetailModal → useLocationById → Location Data
+     ↓               ↓                      ↓                   ↓                ↓
+  Click Event    Selection Hook         Modal State    Service Layer      Render
 
-// Character Dossier flow
-CharacterCard → DetailModal → Router → /dossier/[id] → useQuery → Character Data
-     ↓               ↓           ↓              ↓              ↓              ↓
-  Click Event   "View Dossier"  Navigation   Dynamic Route  Service Layer  Render
+// Character Dossier flow con hooks de navegación
+CharacterCard → useCharacterNavigation → Router → /dossier/[id] → useQuery → Character Data
+     ↓               ↓                      ↓              ↓              ↓              ↓
+  Click Event    Navigation Hook         Navigation   Dynamic Route  Service Layer  Render
+
+// Layout flow con Server/Client Components
+layout.tsx (Server) → LayoutContent (Client) → useSidebarPadding → Dynamic Layout
+     ↓                        ↓                           ↓                    ↓
+  Metadata            Client Logic               Hook Personalizado      Render Optimizado
 ```
 
 ---
@@ -184,6 +216,19 @@ npm run dev
 - **Performance:** Optimización de bundle y streaming
 - **App Router:** Rutas dinámicas con layouts anidados
 
+#### **Enterprise Architecture Patterns:**
+
+- **Custom Hooks Architecture:** Hooks reutilizables con `useCallback` y memoización
+- **Service Layer Pattern:** Separación entre API calls y business logic
+- **Component Composition:** Componentes atómicos y reutilizables
+- **Configuration Management:** Configuración centralizada y type-safe
+- **Dependency Injection:** Services inyectables y testables
+- **Single Responsibility Principle:** Cada hook/componente con una responsabilidad clara
+- **Server/Client Components:** Separación óptima entre renderizado server y client
+- **Error Boundary Pattern:** Manejo de errores con fallback UI
+- **Performance Hooks:** `useDebounce` y `useCardHover` para optimización
+- **Type Safety:** Interfaces centralizadas y tipado estricto
+
 ---
 
 ## 📊 Estado Actual del Proyecto
@@ -209,6 +254,14 @@ npm run dev
 - [x] getCharacterById service
 - [x] CharacterDOssier component
 - [x] Navigation integration
+- [x] **Enterprise Refactoring Complete**
+- [x] **Custom Hooks Architecture** (8+ hooks reutilizables)
+- [x] **Service Layer Pattern** (API client + services)
+- [x] **Component Composition** (atomic + reusable)
+- [x] **Configuration Management** (centralizada + type-safe)
+- [x] **Server/Client Components** (separación óptima)
+- [x] **Performance Optimizations** (useCallback, memoization)
+- [x] **Type Safety Enhanced** (interfaces centralizadas)
 
 ### 🚧 **Próximas Features:**
 

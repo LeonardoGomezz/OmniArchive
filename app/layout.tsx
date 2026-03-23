@@ -3,8 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
-import QueryProvider from "./QueryProvider";
-import OnmiArchiveSidebar from "@/components/OmniArchiveSidebar";
+import { LayoutContent } from "@/components/layout/LayoutContent";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -35,16 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <QueryProvider>
-          <div className="min-h-screen bg-background relative">
-            {/* Scanline overlay */}
-            <div className="scanline-overlay" />
-            <OnmiArchiveSidebar />
-            <div className="ml-56 min-h-screen flex flex-col">
-              <main className="flex-1">{children}</main>
-            </div>
-          </div>
-        </QueryProvider>
+        <LayoutContent>{children}</LayoutContent>
       </body>
     </html>
   );

@@ -48,4 +48,5 @@ export interface NavItem {
   icon: React.ElementType;
   label: string;
   id: string;
+  href?: string;
 }
