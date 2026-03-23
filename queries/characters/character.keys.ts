@@ -15,4 +15,10 @@ export const characterKeys = {
   details: () => [...characterKeys.all, "detail"] as const,
   detail: (id: string | number) =>
     [...characterKeys.details(), id.toString()] as const,
+  episodes: {
+    all: ["episodes"] as const,
+    byUrl: (url: string) => [...characterKeys.episodes.all, { url }] as const,
+    byIds: (ids: string) =>
+      [...characterKeys.episodes.all, "batch", ids] as const,
+  },
 };
