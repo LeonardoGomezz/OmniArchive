@@ -1,6 +1,6 @@
 "use client";
 import { CharacterFilters } from "./CharacterFilters";
-import { CharactersList } from "./features/characters/CharactersList";
+import { CharactersList } from "./CharactersList";
 import DetailModal from "./DetailModal";
 import { useCharactersWithFilters } from "@/hooks/api/useCharactersWithFilters";
 import { useCharacterSelection } from "@/hooks/ui/useCharacterSelection";

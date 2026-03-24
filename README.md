@@ -55,20 +55,21 @@ src/
 │   └── page.tsx                  # Home / Dashboard
 ├── components/                    # Componentes de UI (Shadcn + Custom)
 │   ├── features/                 # Componentes específicos por feature
-│   │   └── characters/
-│   │       ├── CharacterCard.tsx         # Tarjeta individual con hooks
-│   │       ├── CharacterStatusBadge.tsx  # Badge de estado reutilizable
-│   │       ├── CharacterInfo.tsx          # Información del personaje
-│   │       ├── CharacterActions.tsx       # Acciones del personaje
-│   │       └── CharactersList.tsx         # Lista con infinite scroll
+│   │   ├── characters/           # Feature completa de Characters
+│   │   │   ├── CharactersSection.tsx  # Componente contenedor principal
+│   │   │   ├── CharacterCard.tsx         # Tarjeta individual con hooks
+│   │   │   ├── CharacterStatusBadge.tsx  # Badge de estado reutilizable
+│   │   │   ├── CharacterInfo.tsx          # Información del personaje
+│   │   │   ├── CharacterActions.tsx       # Acciones del personaje
+│   │   │   ├── CharactersList.tsx         # Lista con infinite scroll
+│   │   │   ├── CharacterFilters.tsx       # Sistema de búsqueda y filtros
+│   │   │   └── DetailModal.tsx           # Modal detallado con datos
+│   │   └── locations/            # Feature de Locations
+│   │       └── LocationList.tsx           # Lista de locations
 │   ├── layout/                   # Componentes de layout
 │   │   └── LayoutContent.tsx             # Client Component para layout
 │   ├── shared/                   # Componentes reutilizables
 │   │   └── ImageWithFallback.tsx         # Imagen con fallback
-│   ├── CharacterDOssier.tsx      # Componente completo de Character Dossier
-│   ├── CharacterFilters.tsx      # Sistema de búsqueda y filtros
-│   ├── CharactersSection.tsx     # Componente principal refactorizado
-│   ├── DetailModal.tsx           # Modal detallado con datos de location
 │   └── OmniArchiveSidebar.tsx    # Navegación lateral con Zustand
 ├── hooks/                        # Custom hooks personalizados
 │   ├── api/                      # Hooks de data fetching

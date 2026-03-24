@@ -4,7 +4,7 @@ import { use } from "react";
 import { Character } from "@/types";
 import { getCharacterById } from "@/lib/services/characters";
 import { characterKeys } from "@/queries/characters/character.keys";
-import CharacterDossier from "@/components/CharacterDOssier";
+import CharacterDossier from "@/components/features/characters/CharacterDOssier";
 import { useRouter } from "next/navigation";
 
 export default function Dossier({
