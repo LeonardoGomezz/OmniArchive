@@ -31,7 +31,7 @@ export const CharactersSection = () => {
   const { handleViewDossier } = useCharacterNavigation();
 
   return (
-    <div className="space-y-6">
+    <div>
       <CharacterFilters filters={filters} onFiltersChange={setFilters} />
 
       <CharactersList
