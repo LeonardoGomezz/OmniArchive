@@ -91,7 +91,7 @@ src/
 │   └── utils.ts                  # Utilidades cn() y helpers
 ├── services/                     # Business logic layer
 │   └── api/
-│       └── characters.service.ts # Service layer para personajes
+│       └── characters.service.ts # Service layer completo para personajes y episodios
 ├── queries/                      # Lógica de fetching con TanStack Query
 │   ├── characters/
 │   │   ├── character.keys.ts     # Query keys centralizadas

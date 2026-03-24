@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { use } from "react";
 import { Character } from "@/types";
-import { getCharacterById } from "@/lib/services/characters";
+import { charactersService } from "@/services/api/characters.service";
 import { characterKeys } from "@/queries/characters/character.keys";
 import CharacterDossier from "@/components/features/characters/CharacterDOssier";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export default function Dossier({
     error,
   } = useQuery<Character>({
     queryKey: characterKeys.detail(id),
-    queryFn: () => getCharacterById(id),
+    queryFn: () => charactersService.getCharacterById(id),
     enabled: !!id,
   });
 

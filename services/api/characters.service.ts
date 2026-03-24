@@ -1,4 +1,4 @@
-import { ApiResponse, Character } from "@/types";
+import { ApiResponse, Character, Episode } from "@/types";
 import { apiClient } from "@/lib/api/client";
 import { APP_CONFIG } from "@/lib/config/constants";
 
@@ -11,7 +11,9 @@ export interface CharacterFilters {
 export class CharactersService {
   constructor(private api: typeof apiClient) {}
 
-  async getCharacters(params: CharacterFilters): Promise<ApiResponse<Character>> {
+  async getCharacters(
+    params: CharacterFilters,
+  ): Promise<ApiResponse<Character>> {
     const filteredParams = this.filterParams(params);
     return this.api.get<ApiResponse<Character>>("/character", filteredParams);
   }
@@ -25,6 +27,11 @@ export class CharactersService {
     return Object.entries(params)
       .filter(([_, value]) => value && value !== "all")
       .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+  }
+
+  async getCharacterEpisodes(url: string): Promise<Episode> {
+    if (!url) throw new Error("Episode URL is required");
+    return this.api.get<Episode>(url);
   }
 }
 

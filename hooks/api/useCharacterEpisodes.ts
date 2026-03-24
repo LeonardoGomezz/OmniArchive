@@ -1,14 +1,14 @@
 "use client";
 import { useQueries } from "@tanstack/react-query";
 import { characterKeys } from "@/queries/characters/character.keys";
-import { getCharacterEpisodes } from "@/lib/services/characters";
+import { charactersService } from "@/services/api/characters.service";
 import { Character, Episode } from "@/types";
 
 export const useCharacterEpisodes = (character: Character) => {
   const episodeResults = useQueries({
     queries: character.episode.map((url: string) => ({
       queryKey: characterKeys.episodes.byUrl(url),
-      queryFn: () => getCharacterEpisodes(url),
+      queryFn: () => charactersService.getCharacterEpisodes(url),
       staleTime: 1000 * 60 * 60,
     })),
   });
