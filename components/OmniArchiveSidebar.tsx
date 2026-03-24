@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigation } from "@/store/use-navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { NAVIGATION_CONFIG } from "@/lib/config/navigation";
+import { useRouter } from "next/navigation";
 
 const OnmiArchiveSidebar = () => {
   const {
@@ -14,6 +15,7 @@ const OnmiArchiveSidebar = () => {
     setCollapsed,
   } = useNavigation();
   const isMobile = useIsMobile();
+  const router = useRouter();
 
   // Auto-collapse on mobile
   useEffect(() => {
@@ -21,6 +23,11 @@ const OnmiArchiveSidebar = () => {
       setCollapsed(true);
     }
   }, [isMobile, setCollapsed]);
+
+  const handleActiveSection = (id: string, url: string) => {
+    setActiveSection(id);
+    router.push(url);
+  };
 
   return (
     <aside
@@ -61,7 +68,7 @@ const OnmiArchiveSidebar = () => {
           return (
             <button
               key={item.id}
-              onClick={() => setActiveSection(item.id)}
+              onClick={() => handleActiveSection(item.id, item.href || "#")}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-sm transition-all duration-200 group relative ${
                 isActive ? "bg-primary/10" : "hover:bg-primary/5"
               }`}
