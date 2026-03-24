@@ -1,4 +1,4 @@
-import { NavItem } from "@/types";
+import { Location, NavItem } from "@/types";
 import { Users, MapPin, Tv, BookOpen, Activity } from "lucide-react";
 
 export const navItems: NavItem[] = [
@@ -7,4 +7,97 @@ export const navItems: NavItem[] = [
   { icon: Tv, label: "Episodes", id: "episodes" },
   { icon: BookOpen, label: "Codex", id: "codex" },
   { icon: Activity, label: "Diagnostics", id: "diagnostics" },
+];
+
+export const mockLocations: Location[] = [
+  {
+    id: 1,
+    name: "Earth (C-137)",
+    type: "Planet",
+    dimension: "Dimension C-137",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 2,
+    name: "Abadango",
+    type: "Cluster",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 3,
+    name: "Citadel of Ricks",
+    type: "Space Station",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 4,
+    name: "Worldender's lair",
+    type: "Planet",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 5,
+    name: "Anatomy Park",
+    type: "Microverse",
+    dimension: "Dimension C-137",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 6,
+    name: "Interdimensional Cable",
+    type: "TV",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 7,
+    name: "Immortality Field Resort",
+    type: "Resort",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 8,
+    name: "Post-Apocalyptic Earth",
+    type: "Planet",
+    dimension: "Post-Apocalyptic Dimension",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 9,
+    name: "Purge Planet",
+    type: "Planet",
+    dimension: "Replacement Dimension",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
+  {
+    id: 10,
+    name: "Venzenulon 7",
+    type: "Planet",
+    dimension: "unknown",
+    residents: [],
+    url: "",
+    created: new Date(),
+  },
 ];
