@@ -23,6 +23,12 @@ export interface Location {
   dimension: string;
   residents: string[];
   url: string;
+  created: Date;
+}
+
+export interface LocationFilters {
+  type?: string;
+  name?: string;
 }
 
 export interface Episode {
