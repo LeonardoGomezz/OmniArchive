@@ -73,7 +73,8 @@ src/
 │   └── OmniArchiveSidebar.tsx    # Navegación lateral con Zustand
 ├── hooks/                        # Custom hooks personalizados
 │   ├── api/                      # Hooks de data fetching
-│   │   └── useCharactersWithFilters.ts   # Hook de filtros y fetching
+│   │   ├── useCharactersWithFilters.ts   # Hook de filtros y fetching
+│   │   └── useCharacterEpisodes.ts        # Hook para obtener episodios
 │   ├── ui/                       # Hooks de UI state
 │   │   ├── useCharacterSelection.ts        # Estado de modal y selección
 │   │   ├── useCharacterNavigation.ts       # Navegación de personajes
@@ -94,7 +95,6 @@ src/
 ├── queries/                      # Lógica de fetching con TanStack Query
 │   ├── characters/
 │   │   ├── character.keys.ts     # Query keys centralizadas
-│   │   └── character.queries.ts  # Hooks personalizados con filtros
 │   └── locations/
 │       ├── locations.keys.ts     # Query keys para locations
 │       └── locations.queries.ts  # Hooks para location details

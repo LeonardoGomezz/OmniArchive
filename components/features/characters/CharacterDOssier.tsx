@@ -1,4 +1,4 @@
-import { useCharacterEpisodes } from "@/queries/characters/character.queries";
+import { useCharacterEpisodes } from "@/hooks/api/useCharacterEpisodes";
 import { Character } from "@/types";
 import { motion } from "framer-motion";
 import {
