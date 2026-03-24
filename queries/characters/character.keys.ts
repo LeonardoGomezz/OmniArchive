@@ -20,5 +20,7 @@ export const characterKeys = {
     byUrl: (url: string) => [...characterKeys.episodes.all, { url }] as const,
     byIds: (ids: string) =>
       [...characterKeys.episodes.all, "batch", ids] as const,
+    byEpisode: (episodeId: string) =>
+      [...characterKeys.episodes.all, "episode", episodeId] as const,
   },
 };

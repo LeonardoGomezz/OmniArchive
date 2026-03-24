@@ -34,10 +34,15 @@ export interface LocationFilters {
 export interface Episode {
   id: number;
   name: string;
-  air_date: string;
-  episode: string; // Ejemplo: "S01E01"
+  episode: string;
+  airDate: string;
   characters: string[];
-  url: string;
+  summary: string;
+}
+
+export interface EpisodeFilters {
+  season?: string;
+  name?: string;
 }
 
 export interface ApiResponse<T> {
