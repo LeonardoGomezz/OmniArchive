@@ -1,4 +1,3 @@
-import { useLocationById } from "@/queries/locations/locations.queries";
 import { Character } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MapPin, Dna, Globe, Radio } from "lucide-react";
@@ -27,9 +26,6 @@ const DetailModal = ({
   onClose,
   onViewDossier,
 }: DetailModalProps) => {
-  const locationId = character?.location?.url?.split("/").pop() || "";
-  const { data: location } = useLocationById(locationId);
-
   return (
     <AnimatePresence>
       {isOpen && character && (
@@ -191,7 +187,7 @@ const DetailModal = ({
                 />
                 <StatBlock
                   label="Dimension"
-                  value={location?.dimension || "Unknown"}
+                  value={character.location.name || "Unknown"}
                 />
                 <StatBlock label="Threat Level" value="OMEGA" accent />
               </div>
