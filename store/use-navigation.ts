@@ -12,7 +12,7 @@ interface NavigationState {
 export const useNavigation = create<NavigationState>()(
   persist(
     (set) => ({
-      activeSection: "characters",
+      activeSection: "dashboard",
       isCollapsed: false,
       setActiveSection: (section) => set({ activeSection: section }),
       toggleCollapsed: () =>
