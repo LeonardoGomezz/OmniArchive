@@ -176,3 +176,48 @@ export const mockEpisodes: Episode[] = [
       "Rick hacks the cable box to show TV from alternate dimensions. The family confronts uncomfortable truths about their lives while watching interdimensional content.",
   },
 ];
+
+export const activityItems = [
+  {
+    time: "00:14:32",
+    event: "New entity scanned",
+    detail: "Rick Sanchez // C-137",
+    type: "scan" as const,
+  },
+  {
+    time: "00:13:58",
+    event: "Dimension breach detected",
+    detail: "Cronenberg Dimension",
+    type: "alert" as const,
+  },
+  {
+    time: "00:12:45",
+    event: "Location indexed",
+    detail: "Citadel of Ricks",
+    type: "scan" as const,
+  },
+  {
+    time: "00:11:22",
+    event: "Status change recorded",
+    detail: "Adjudicator Rick → DEAD",
+    type: "alert" as const,
+  },
+  {
+    time: "00:10:07",
+    event: "Episode archived",
+    detail: "S01E06 // Rick Potion #9",
+    type: "scan" as const,
+  },
+  {
+    time: "00:09:33",
+    event: "Portal activity spike",
+    detail: "Sector 7-G anomaly",
+    type: "alert" as const,
+  },
+  {
+    time: "00:08:12",
+    event: "New species catalogued",
+    detail: "Gazorpian // Hostile",
+    type: "scan" as const,
+  },
+];
