@@ -18,6 +18,7 @@ El proyecto se centra en la **Navegación Relacional**. El usuario puede iniciar
 - **📊 Character Database:** Navegación por más de 800 personajes con infinite scroll optimizado.
 - **🗺️ Location Explorer:** Navegación por locaciones con filtrado por tipo y scroll infinito.
 - **📺 Episode Archives:** Timeline de episodios con filtrado por temporada y nombres de personajes.
+- **📈 Dashboard Overview:** Panel principal con métricas en tiempo real y activity stream.
 - **🎨 Cyberpunk Terminal UI:** Interfaz con estética glassmorphism, bordes neon green y animaciones fluidas.
 - **📋 Detail Modal:** Vista detallada de personajes con datos de location y dimensionales.
 - **🗂️ Character Dossier:** Página dedicada con información completa del personaje y análisis dimensional.
@@ -48,7 +49,9 @@ Para garantizar un rendimiento de nivel profesional y un código mantenible, el 
 
 ```text
 src/
-├── app/                          # Rutas dinámicas y layouts (Next.js App Router)
+│   ├── app/                          # Rutas dinámicas y layouts (Next.js App Router)
+│   ├── characters/
+│   │   └── page.tsx              # Página de Characters
 │   ├── dossier/
 │   │   └── [id]/
 │   │       └── page.tsx          # Página dinámica de Character Dossier
@@ -64,13 +67,17 @@ src/
 │   │   ├── characters/           # Feature completa de Characters
 │   │   │   ├── CharactersSection.tsx  # Componente contenedor principal
 │   │   │   ├── CharacterCard.tsx         # Tarjeta individual con hooks
-│   │   │   ├── CharacterStatusBadge.tsx  # Badge de estado reutilizable
-│   │   │   ├── CharacterInfo.tsx          # Información del personaje
 │   │   │   ├── CharacterActions.tsx       # Acciones del personaje
 │   │   │   ├── CharactersList.tsx         # Lista con infinite scroll
 │   │   │   ├── CharacterFilters.tsx       # Sistema de búsqueda y filtros
 │   │   │   ├── DetailModal.tsx           # Modal detallado con datos
 │   │   │   └── CharacterDOssier.tsx      # Página completa de personaje
+│   │   │   ├── DossierHeader.tsx          # Header de navegación del dossier
+│   │   │   ├── CharacterPortrait.tsx      # Portrait con scanning frame
+│   │   │   ├── LocationReadouts.tsx       # Cards de origen y ubicación
+│   │   │   ├── SubjectAnalysis.tsx        # Análisis técnico del personaje
+│   │   │   ├── DimensionalActivity.tsx    # Gráfico de actividad dimensional
+│   │   │   └── AppearanceLogs.tsx         # Lista de apariciones en episodios
 │   │   ├── locations/            # Feature de Locations
 │   │   │   ├── LocationsSection.tsx       # Componente contenedor principal
 │   │   │   ├── LocationsFilter.tsx        # Sistema de filtros por tipo
@@ -80,8 +87,12 @@ src/
 │   │   └── episodes/             # Feature de Episodes
 │   │       ├── EpisodesSection.tsx        # Componente contenedor principal
 │   │       ├── EpisodesFilter.tsx         # Sistema de filtros por temporada
-│   │       ├── EpisodeEntry.tsx           # Entry individual con timeline
-│   │       └── SegmentedFilter.tsx        # Control de filtros segmentado
+│   │       └── EpisodeEntry.tsx           # Entry individual con timeline
+│   │   └── dashboard/             # Feature de Dashboard
+│   │       ├── DashboardSection.tsx        # Componente principal del dashboard
+│   │       ├── MetricCard.tsx             # Tarjeta de métricas reutilizable
+│   │       ├── ActivityFeed.tsx           # Activity stream con live indicator
+│   │       └── SystemDiagnostics.tsx       # Panel de diagnósticos del sistema
 │   ├── layout/                   # Componentes de layout
 │   │   └── LayoutContent.tsx             # Client Component para layout
 │   ├── shared/                   # Componentes reutilizables
@@ -92,12 +103,13 @@ src/
 │   │   ├── useCharactersWithFilters.ts   # Hook de filtros y fetching
 │   │   ├── useCharacterEpisodes.ts        # Hook para obtener episodios
 │   │   ├── useLocationsWithFilters.ts    # Hook de filtros y fetching de locations
-│   │   └── useEpisodesWithFilters.ts      # Hook de filtros y fetching de episodes
+│   │   ├── useEpisodesWithFilters.ts      # Hook de filtros y fetching de episodes
+│   │   └── useCharactersByEpisode.ts       # Hook para obtener personajes por episodio
 │   ├── ui/                       # Hooks de UI state
 │   │   ├── useCharacterSelection.ts        # Estado de modal y selección
 │   │   ├── useCharacterNavigation.ts       # Navegación de personajes
 │   │   ├── useEpisodeSelection.ts         # Estado de expansión de episodios
-│   │   ├── useInfiniteScroll.ts           # Hook de scroll infinito
+│   │   └── useInfiniteScroll.ts           # Hook de scroll infinito
 │   │   └── useSidebarPadding.ts            # Padding dinámico de sidebar
 ├── lib/                          # Utilidades y configuración centralizada
 │   ├── api/
@@ -318,6 +330,8 @@ npm run dev
 - [x] **Performance Optimizations** (useCallback, memoization)
 - [x] **Type Safety Enhanced** (interfaces centralizadas)
 - [x] **Architecture Cleanup** (eliminación de código no utilizado)
+- [x] **Dashboard Implementation** con métricas en tiempo real
+- [x] **Component Refactoring** (CharacterDOssier split en 6 componentes)
 
 ### 🚧 **Próximas Features:**
 
