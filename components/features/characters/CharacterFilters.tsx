@@ -58,7 +58,7 @@ export const CharacterFilters = ({
 
   return (
     <div className="mb-6 p-4 border border-primary/50 rounded-lg bg-background/50 backdrop-blur-sm">
-      <div className="flex flex-col sm:flex-wrap sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4">
         {/* Search Bar */}
         <div className="relative flex-1 sm:min-w-[300px]">
           <Search
