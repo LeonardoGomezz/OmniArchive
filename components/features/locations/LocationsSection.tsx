@@ -3,7 +3,7 @@ import { LocationList } from "./LocationList";
 import { useLocationsWithFilters } from "@/hooks/api/useLocationsWithFilters";
 
 export const LocationsSection = () => {
-  // Hook para manejo de filtros y data fetching
+  // Hook for filter management and data fetching
   const {
     filters,
     setFilters,

@@ -7,7 +7,7 @@ import { useCharacterSelection } from "@/hooks/ui/useCharacterSelection";
 import { useCharacterNavigation } from "@/hooks/ui/useCharacterNavigation";
 
 export const CharactersSection = () => {
-  // Hook para manejo de filtros y data fetching
+  // Hook for filter management and data fetching
   const {
     filters,
     setFilters,
@@ -19,7 +19,7 @@ export const CharactersSection = () => {
     isFetchingNextPage,
   } = useCharactersWithFilters();
 
-  // Hook para manejo de selección y modal
+  // Hook for handling selection and modal windows
   const {
     selectedCharacter,
     isModalOpen,
@@ -27,7 +27,7 @@ export const CharactersSection = () => {
     handleCloseModal,
   } = useCharacterSelection();
 
-  // Hook para navegación
+  // Navigation hook
   const { handleViewDossier } = useCharacterNavigation();
 
   return (

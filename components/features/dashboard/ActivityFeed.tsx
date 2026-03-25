@@ -3,13 +3,6 @@ import { activityItems } from "@/lib/data/data";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-interface ActivityItem {
-  time: string;
-  event: string;
-  detail: string;
-  type: "scan" | "alert";
-}
-
 export const ActivityFeed = () => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}

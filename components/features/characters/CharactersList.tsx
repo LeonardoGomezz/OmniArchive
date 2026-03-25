@@ -29,7 +29,7 @@ export const CharactersList = ({
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Infinite scroll con Intersection Observer
+  // Infinite scrolling with Intersection Observer
   useEffect(() => {
     if (!loadMoreRef.current || !hasMore) return;
 

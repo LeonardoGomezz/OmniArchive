@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface NavigationState {
   activeSection: string;
@@ -12,14 +12,15 @@ interface NavigationState {
 export const useNavigation = create<NavigationState>()(
   persist(
     (set) => ({
-      activeSection: 'characters',
+      activeSection: "characters",
       isCollapsed: false,
       setActiveSection: (section) => set({ activeSection: section }),
-      toggleCollapsed: () => set((state) => ({ isCollapsed: !state.isCollapsed })),
+      toggleCollapsed: () =>
+        set((state) => ({ isCollapsed: !state.isCollapsed })),
       setCollapsed: (collapsed) => set({ isCollapsed: collapsed }),
     }),
     {
-      name: 'navigation-storage',
-    }
-  )
+      name: "navigation-storage",
+    },
+  ),
 );

@@ -1,6 +1,5 @@
 import { ApiResponse, Character, Episode } from "@/types";
 import { apiClient } from "@/lib/api/client";
-import { APP_CONFIG } from "@/lib/config/constants";
 
 export interface CharacterFilters {
   name?: string;

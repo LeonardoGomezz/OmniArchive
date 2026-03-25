@@ -7,7 +7,6 @@ import {
   Globe,
   Radio,
   Dna,
-  Tv,
   Shield,
   Zap,
 } from "lucide-react";

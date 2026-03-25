@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Character } from "@/types";
 import {
   charactersService,
   CharacterFilters,

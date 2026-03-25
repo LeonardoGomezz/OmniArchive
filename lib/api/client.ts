@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { APP_CONFIG } from "@/lib/config/constants";
 
 export class ApiClient {

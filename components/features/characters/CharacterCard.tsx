@@ -101,11 +101,11 @@ export const CharacterCard = ({
           </div>
         </div>
 
-        {/* Actions - Solo visible en hover */}
+        {/* Actions - Visible only on hover */}
         <CharacterActions
           character={character}
           onViewDossier={onViewDossier}
-          isHovered={false} // Siempre visible para mantener el diseño original
+          isHovered={false} // Always visible to preserve the original design
         />
       </div>
 

@@ -6,7 +6,7 @@ import { useEpisodeSelection } from "@/hooks/ui/useEpisodeSelection";
 import { useInfiniteScroll } from "@/hooks/ui/useInfiniteScroll";
 
 export const EpisodesSection = () => {
-  // Hook para manejo de filtros y data fetching
+  // Hook for filter management and data fetching
   const {
     filters,
     setFilters,
@@ -18,10 +18,10 @@ export const EpisodesSection = () => {
     isFetchingNextPage,
   } = useEpisodesWithFilters();
 
-  // Hook para manejo de expansión
+  // Hook for expansion management
   const { expandedId, isExpanded, handleToggle } = useEpisodeSelection();
 
-  // Hook para scroll infinito
+  // Infinite scroll hook
   const { loadMoreRef } = useInfiniteScroll({
     hasNextPage,
     isFetchingNextPage,

@@ -10,7 +10,7 @@ export const useSidebarPadding = () => {
   );
 
   useEffect(() => {
-    // Actualizar el padding basado en el estado del sidebar
+    // Update the padding based on the sidebar's state
     const newWidth = isCollapsed
       ? NAVIGATION_CONFIG.SIDEBAR.COLLAPSED_WIDTH
       : NAVIGATION_CONFIG.SIDEBAR.EXPANDED_WIDTH;
