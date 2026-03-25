@@ -2,6 +2,8 @@
 import QueryProvider from "@/app/QueryProvider";
 import OnmiArchiveSidebar from "@/components/OmniArchiveSidebar";
 import { useSidebarPadding } from "@/hooks/ui/useSidebarPadding";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigation } from "@/store/use-navigation";
 
 interface LayoutContentProps {
   children: React.ReactNode;
@@ -9,6 +11,8 @@ interface LayoutContentProps {
 
 export const LayoutContent = ({ children }: LayoutContentProps) => {
   const sidebarWidth = useSidebarPadding();
+  const isMobile = useIsMobile();
+  const { isCollapsed } = useNavigation();
 
   return (
     <QueryProvider>
@@ -18,7 +22,9 @@ export const LayoutContent = ({ children }: LayoutContentProps) => {
         <OnmiArchiveSidebar />
         <div
           className="min-h-screen flex flex-col transition-all duration-300"
-          style={{ marginLeft: `${sidebarWidth}px` }}
+          style={{
+            marginLeft: isMobile && !isCollapsed ? "0px" : `${sidebarWidth}px`,
+          }}
         >
           <main className="flex-1">{children}</main>
         </div>

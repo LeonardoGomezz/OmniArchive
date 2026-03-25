@@ -3,7 +3,7 @@ import { LocationsSection } from "@/components/features/locations/LocationsSecti
 
 export default function LocationsPage() {
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-8">
       <LocationsSection />
     </div>
   );

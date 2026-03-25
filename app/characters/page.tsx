@@ -2,7 +2,7 @@ import { CharactersSection } from "@/components/features/characters/CharactersSe
 
 export default function CharactersPage() {
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-8">
       <CharactersSection />
     </div>
   );

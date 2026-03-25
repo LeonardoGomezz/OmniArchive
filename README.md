@@ -296,6 +296,10 @@ npm run dev
 
 ---
 
+### 🚧 **Próximas Features:**
+
+- [ ] Ajustar Responsive en vista mobile
+
 ---
 
 Desarrollado por [Leonardo Jose Gomez Gomez] — 2026.
