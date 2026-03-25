@@ -17,12 +17,30 @@ const OnmiArchiveSidebar = () => {
   const isMobile = useIsMobile();
   const router = useRouter();
 
-  // Auto-collapse on mobile
+  // Auto-collapse based on screen size
   useEffect(() => {
-    if (isMobile) {
-      setCollapsed(true);
+    if (typeof globalThis.window !== "undefined") {
+      const isLargeScreen = globalThis.window.innerWidth >= 1024; // lg breakpoint
+      setCollapsed(!isLargeScreen);
     }
-  }, [isMobile, setCollapsed]);
+  }, [setCollapsed]);
+
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof globalThis.window !== "undefined") {
+        const isLargeScreen = globalThis.window.innerWidth >= 1024; // lg breakpoint
+        setCollapsed(!isLargeScreen);
+      }
+    };
+
+    if (typeof globalThis.window !== "undefined") {
+      globalThis.window.addEventListener("resize", handleResize);
+      return () =>
+        globalThis.window.removeEventListener("resize", handleResize);
+    }
+    return undefined;
+  }, [setCollapsed]);
 
   const handleActiveSection = (id: string, url: string) => {
     setActiveSection(id);
