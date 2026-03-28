@@ -110,7 +110,7 @@ export const EpisodeEntry = ({
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <div className="ml-[72px] mt-1 p-4 glass-surface rounded-sm border-l-2 border-primary/30 space-y-3">
+            <div className="ml-[20px] sm:ml-[72px] mt-1 p-4 glass-surface rounded-sm border-l-2 border-primary/30 space-y-3">
               <p className="text-[9px] tracking-[0.2em] text-muted-foreground uppercase">
                 Transmission Summary
               </p>
