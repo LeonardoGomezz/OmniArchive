@@ -27,7 +27,7 @@ export default function Dossier({
   });
 
   const handleBack = () => {
-    router.push("/");
+    router.push("/characters");
   };
 
   if (isLoading) {
