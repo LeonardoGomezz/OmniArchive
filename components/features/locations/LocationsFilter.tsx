@@ -29,7 +29,7 @@ export const LocationsFilter = ({
   return (
     <div className="space-y-6">
       {/* Section header */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
+      <div className="flex flex-col md:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="font-display text-lg font-bold tracking-[0.2em] text-primary text-glow">
             Galactic Map
@@ -38,11 +38,13 @@ export const LocationsFilter = ({
             {coordinatesMapped} coordinates mapped // Star-chart active
           </p>
         </div>
-        <SegmentedFilter
-          options={typeFilters}
-          activeOption={filters.type === undefined ? "All" : filters.type}
-          onOptionChange={handleTypeChange}
-        />
+        <div className="w-full sm:w-auto">
+          <SegmentedFilter
+            options={typeFilters}
+            activeOption={filters.type === undefined ? "All" : filters.type}
+            onOptionChange={handleTypeChange}
+          />
+        </div>
       </div>
     </div>
   );
