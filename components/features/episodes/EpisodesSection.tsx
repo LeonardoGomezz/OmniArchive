@@ -39,7 +39,7 @@ export const EpisodesSection = () => {
       {/* Timeline */}
       <div className="relative">
         {/* Vertical timeline line */}
-        <div className="absolute left-[52px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
+        <div className="hidden sm:block absolute left-[52px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
 
         <div className="space-y-2">
           {episodes.map((episode, index) => (

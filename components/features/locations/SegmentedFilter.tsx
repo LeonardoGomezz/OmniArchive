@@ -12,14 +12,14 @@ const SegmentedFilter = ({
   onOptionChange,
 }: SegmentedFilterProps) => {
   return (
-    <div className="flex items-center gap-0.5 p-1 glass-surface rounded-sm">
+    <div className="flex items-center gap-0.5 p-1 glass-surface rounded-sm overflow-x-auto">
       {options.map((option) => {
         const isActive = activeOption === option;
         return (
           <button
             key={option}
             onClick={() => onOptionChange(option)}
-            className={`relative px-4 py-1.5 text-[10px] tracking-[0.15em] uppercase font-mono transition-all duration-200 rounded-[2px] ${
+            className={`relative px-3 py-1.5 text-[10px] tracking-[0.15em] uppercase font-mono transition-all duration-200 rounded-[2px] whitespace-nowrap flex-shrink-0 ${
               isActive
                 ? "text-primary-foreground"
                 : "text-muted-foreground hover:text-primary/80"

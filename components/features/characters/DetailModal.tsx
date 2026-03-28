@@ -132,14 +132,14 @@ const DetailModal = ({
 
             {/* Bottom section */}
             <div className="p-6 border-t border-border/30 space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <p className="text-[9px] tracking-[0.2em] text-muted-foreground uppercase">
                   Dimensional Activity Log
                 </p>
                 {onViewDossier && (
                   <button
                     onClick={() => onViewDossier(character)}
-                    className="px-4 py-1.5 text-[10px] tracking-[0.15em] uppercase font-mono rounded-sm transition-all duration-200 text-primary-foreground"
+                    className="px-4 py-1.5 text-[10px] tracking-[0.15em] uppercase font-mono rounded-sm transition-all duration-200 text-primary-foreground w-full sm:w-auto"
                     style={{
                       background: "hsl(var(--primary) / 0.9)",
                       boxShadow: "0 0 15px hsl(120 100% 50% / 0.3)",
@@ -180,7 +180,7 @@ const DetailModal = ({
               </div>
 
               {/* Stats row */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <StatBlock
                   label="Appearances"
                   value={character.episode.length.toString()}

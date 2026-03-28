@@ -8,7 +8,7 @@ import { APP_CONFIG } from "@/lib/config/constants";
 
 export const useLocationsWithFilters = () => {
   const [filters, setFilters] = useState<LocationFilters>({
-    type: "all",
+    type: undefined,
     name: "",
   });
 
@@ -16,7 +16,7 @@ export const useLocationsWithFilters = () => {
     (newFilters: Partial<LocationFilters>) => {
       setFilters((prev) => ({ ...prev, ...newFilters }));
     },
-    []
+    [],
   );
 
   const {
